@@ -5,6 +5,10 @@
 
 .container {
   text-align: center;
+  display: grid;
+  grid-auto-rows: min-content;  /* causes grid rows to adjust their height to match the content of the grid items */
+  grid-template-columns: 1fr 4fr;   /* container has two columns, second column is 4x larger than first column */
+  gap: 4px;   
 }
 
 .container div {
@@ -17,35 +21,76 @@
 
 .header {
   background-color: #393f4d;
+  grid-area: 1 / 1 / 2 / 3; /* header spans both columns */
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* header has 2 columns: first for header logo and second for menu */
+}
+
+.logo {
+  place-self: center start; /* positions the header logo at the start of the row axis- further to the left */
+}
+
+.menu {
+  display: grid;
+  align-items: center; /* positions the header menu in the center of the column axis */
+} 
+
+.menu ul,
+.nav ul {
+  list-style: none;
+  display: grid;
+}
+
+.menu ul {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .menu ul,
 .menu li {
-  font-size: 16px;
+  font-size: 16px; 
+}
+
+.nav {
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.nav ul {
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .sidebar {
   background-color: #FF7755;
+  grid-area: 2 / 1 / 4 / 2;   /* sidebar only spans first column */
+  display: grid;
+  grid-template-rows: repeat(auto-fit, 1fr);
+  grid-template-columns: 1fr;
+  gap: 50px;
+}
+
+.sidebar .photo,
+.sidebar .side-content {
+  font-weight: normal;
+  background-color: white;
+  color: black;
+  display: grid;
+  place-items: center; /* text elements in the sidebar are centered with grid */
 }
 
 .sidebar .photo {
-  background-color: white;
-  color: black;
   font-size: 12px;
-  font-weight: normal;
   border-radius: 10px;
 }
 
 
 .sidebar .side-content {
-  background-color: white;
-  color: black;
   font-size: 16px;
-  font-weight: normal;
 }
 
 .nav {
   background-color: #FF7755;
+  grid-area: 2 / 2 / 3 / 3;   /* nav only spans second column */ 
+  display: grid;
+  grid-template-rows: min-content;
 }
 
 .nav ul li {
@@ -55,6 +100,10 @@
 
 .article {
   background-color: #bccbde;
+  grid-area: 3 / 2 / 4 / 3;    /* article only spans second column */ 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
 }
 
 .article p {
@@ -68,12 +117,13 @@
   background-color: #FFFFFF;
   color: black;
   text-align: center;
+  height: 200px;
 }
 
 .card p {
-  color: black;
-  font-weight: normal;
   font-size: 14px;
+  font-weight: normal;
+  color: black;
 }
 
 .card .title {
@@ -83,6 +133,7 @@
 
 .footer {
   background-color: #393f4d;
+  grid-area: 4 / 1 / 5 / 3;   /* footer spans both columns */
 }
 
 .footer p {
